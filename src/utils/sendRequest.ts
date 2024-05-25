@@ -4,7 +4,7 @@ import chalk from "chalk";
 import { generateRandomEmail } from "./generateRandomEmail";
 import constants from "../configs/constants";
 import { generateRandomUsername } from "./generateRandomUsername";
-export const sendRequest = async () => {
+export const sendRequest = async (city: string) => {
   let data = JSON.stringify({
     email: generateRandomEmail(),
     name: generateRandomUsername(),
@@ -16,7 +16,7 @@ export const sendRequest = async () => {
     const result = await axios.request({
       ...constants.requestConfig,
       data: data,
-      url: "https://api.openweathermap.org/data/2.5/weather?q=panauti&appid=59d9f1da0d79f2f77a8f262f11351b96",
+      url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=59d9f1da0d79f2f77a8f262f11351b96`,
     });
     console.log(result.data);
     //  console.log(data);
@@ -29,4 +29,4 @@ export const sendRequest = async () => {
   }
 };
 
-sendRequest();
+// sendRequest();
